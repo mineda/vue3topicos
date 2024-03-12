@@ -2,6 +2,7 @@
   <div>
     <h1>Welcome {{ nome }}</h1>
     <input type="text" :value="nome" @input="mudouTexto"/>
+    <input type="password" v-model="senha"/>
     <p v-if="nome.length > 10">Nome longo!</p>
     <p v-else>Nome curto!</p>
     <CustomTable :usuarios="usuarios"/>
@@ -13,6 +14,7 @@ import { ref } from 'vue';
 import CustomTable from '@/components/CustomTable.vue';
 
 const nome = ref("teste");
+const senha = ref("senha");
 const usuarios = ref([ {id:1, nome: "Geraldo"}, {id: 2, nome: "Cláudia"}]);
 
 function mudouTexto(e: any) {
