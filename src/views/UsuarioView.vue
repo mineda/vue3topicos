@@ -17,15 +17,22 @@ import { ref } from 'vue';
 import CustomTable from '@/components/CustomTable.vue';
 import axios from 'axios';
 import { onMounted } from 'vue';
+import { usuarioStore} from '../stores/usuarioStore';
 
+const store = usuarioStore();
 const nome = ref("teste");
 const senha = ref("senha");
 const erro = ref("");
 const usuarios = ref([ {id:1, nome: "Geraldo"}, {id: 2, nome: "Cláudia"}]);
+const headers = {
+    headers: {
+        'Authorization': store.token
+    }
+}
 
 async function buscarUsuarios() {
   try {
-    usuarios.value = (await axios.get('usuario')).data;
+    usuarios.value = (await axios.get('usuario', headers)).data;
   }
   catch(e) {
     erro.value = (e as Error).message;
