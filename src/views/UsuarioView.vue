@@ -24,15 +24,10 @@ const nome = ref("teste");
 const senha = ref("senha");
 const erro = ref("");
 const usuarios = ref([ {id:1, nome: "Geraldo"}, {id: 2, nome: "Cláudia"}]);
-const headers = {
-    headers: {
-        'Authorization': store.token
-    }
-}
 
 async function buscarUsuarios() {
   try {
-    usuarios.value = (await axios.get('usuario', headers)).data;
+    usuarios.value = (await axios.get('usuario')).data;
   }
   catch(e) {
     erro.value = (e as Error).message;
